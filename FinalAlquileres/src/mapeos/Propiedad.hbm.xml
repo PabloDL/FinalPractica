@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Propiedad" table="propiedad">
+		<id column="idPropiedad" name="idPropiedad">
+			<generator class="identity" />
+		</id>
+
+		<property name="precioBase" column="precioBase" type="double" />
+		<property name="direccion" column="direccion" type="string" />
+
+		<joined-subclass name="datos.Casa" table="casa">
+			<key column="idPropiedad" />
+			<property column="tienePatio" name="tienePatio"	type="boolean" />
+		</joined-subclass>
+		
+		<joined-subclass name="datos.Departamento" table="departamento">
+			<key column="idPropiedad" />
+			<property column="cantidadAmbientes" name="cantidadAmbientes" type="int" />
+			<property column="nroPiso" name="nroPiso" type="int" />
+			<property column="tieneAscensor" name="tieneAscensor" type="boolean" />
+		</joined-subclass>
+	</class>
+</hibernate-mapping>
